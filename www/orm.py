@@ -212,7 +212,7 @@ class Model(dict, metaclass=ModelMetaclass):
         # pdb.set_trace()
         rows = yield from execute(self.__update__, args)    # args是属性的list
         if rows != 1:
-            logging.warn(
+            logging.warning(
                 'failed to update by primary key: affected rows: %s' % rows)
 
     @asyncio.coroutine
@@ -221,7 +221,7 @@ class Model(dict, metaclass=ModelMetaclass):
         # pdb.set_trace()
         rows = yield from execute(self.__delete__, args)
         if rows != 1:
-            logging.warn(
+            logging.warning(
                 'failed to remove by primary key: affected rows: %s' % rows)
 
 class Field(object):  # 属性的基类，给其他具体Model类继承
@@ -257,7 +257,7 @@ class IntegerField(Field):
 class FloatField(Field):
 
     def __init__(self, name=None, primary_key=False, default=0.0):
-        super().__init__(name, 'real', primargity_key, default)
+        super().__init__(name, 'real', primary_key, default)
 
 class TextField(Field):
 
